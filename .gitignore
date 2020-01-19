@@ -1,0 +1,10 @@
+# jetbrains idea
+**/.idea
+**/out
+**/*.iml
+
+# java
+**/*.class
+
+# log
+**/*.log
