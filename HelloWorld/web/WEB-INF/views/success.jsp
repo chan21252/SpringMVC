@@ -8,7 +8,7 @@
     <div>time:${requestScope.time}</div>
     <div>username:${requestScope.username}</div>
     <div>user:${sessionScope.user}</div>
-    <div>user1:${sessionScope.user1}</div>
+    <div>user1:${userAdmin}</div>
     <div>school:${school}</div>
 </body>
 </html>

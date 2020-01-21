@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * @author Administrator
  */
-@SessionAttributes(value = {"user", "user1"}, types = {String.class})
+@SessionAttributes(value = {"user"}, types = {String.class})
 @RequestMapping(value = "springmvc")
 @Controller
 public class TestRequestMapping {
@@ -140,20 +140,34 @@ public class TestRequestMapping {
     public String testSessionAttributes(Map<String, Object> map) {
         User user = new User("admin", "123");
         map.put("user", user);
-        User user1 = (User) map.get("user1");
-        user1.setPassword("bob20220");
-        map.put("user1", user1);
         map.put("school", "北京大学");
         return SUCCESS;
     }
 
     /**
      * ModelAttribute注解表示模型属性
-     *
-     * @return User
      */
-    @ModelAttribute("user1")
-    public User getUser() {
-        return new User("Bob", "bob123");
+    @ModelAttribute
+    public void getUser(@RequestParam(value = "id", required = false) Integer id,
+                        Map<String, Object> map) {
+        if (id == 1) {
+            //模拟从数据库中查询到对应对象
+            User userAdmin = new User(1, "admin", "123", "admin@springmvc.com");
+            System.out.println("从数据库中获取到对象：" + userAdmin);
+            map.put("userAdmin", userAdmin);
+        }
+    }
+
+    /**
+     * 1. 执行带有ModelAttribute注解的方法，从数据库中取出对象，放入map中，键为user
+     * 2. SpringMVC将表单提交的参数重新赋值给map中的user键对应的User对象
+     * 3. 将修改好的User对象传入请求方法
+     *
+     * @return String
+     */
+    @RequestMapping(value = "testModelAttribute")
+    public String testModelAttribute(@ModelAttribute("userAdmin") User user) {
+        System.out.println("修改对象：" + user);
+        return SUCCESS;
     }
 }

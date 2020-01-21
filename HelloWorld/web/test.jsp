@@ -56,5 +56,19 @@
     <a href="${pageContext.request.contextPath}/springmvc/testModelAndView" target="_blank">Test Model And View</a><br/>
     <a href="${pageContext.request.contextPath}/springmvc/testMap" target="_blank">Test Map</a>
     <a href="${pageContext.request.contextPath}/springmvc/testSessionAttr" target="_blank">Test Session Attributes</a>
+
+    <!--
+        修改用户属性：
+        原始数据，id=1，username=admin，password=123，email=admin@springmvc.com
+        id和password不能被修改
+        输入框提交修改的属性值，返回修改后的信息
+    -->
+    <p>测试ModelAttribute</p>
+    <form action="${pageContext.request.contextPath}/springmvc/testModelAttribute" method="post">
+        <label for="ma-id"></label><input type="hidden" name="id" value="1" id="ma-id"/><br/>
+        <label for="ma-username">姓名：</label><input type="text" name="username" id="ma-username"/><br/>
+        <label for="ma-email">email：</label><input type="text" name="email" id="ma-email"/><br/>
+        <input type="submit" value="Test Model Attribute">
+    </form>
 </body>
 </html>
