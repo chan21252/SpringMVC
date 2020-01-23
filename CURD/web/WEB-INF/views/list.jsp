@@ -3,6 +3,16 @@
 <html>
 <head>
     <title>所有员工信息</title>
+    <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".delete").click(function () {
+                let href = this.href;
+                $("#hidden-form").attr("action", href).submit();
+                return false;
+            })
+        });
+    </script>
 </head>
 <body>
 <c:if test="${empty employees}">
@@ -18,6 +28,7 @@
                 <td>Gender</td>
                 <td>Department</td>
                 <td>Edit</td>
+                <td>Delete</td>
             </tr>
         </thead>
         <tbody>
@@ -28,14 +39,17 @@
                     <td>${emp.email}</td>
                     <td>${emp.gender}</td>
                     <td>${emp.department.departmentName}</td>
-                    <td><a href="/edit">edit</a></td>
-                    <td><a href="/delete">delete</a></td>
+                    <td><a href="/emp/${emp.id}">edit</a></td>
+                    <td><a href="/emp/${emp.id}" class="delete">delete</a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </c:if>
-
 <a href="/emp">添加员工</a>
+
+<form id="hidden-form" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+</form>
 </body>
 </html>
