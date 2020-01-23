@@ -25,7 +25,20 @@
         <br/>
         Department:<form:select path="department.id" items="${departments}" itemLabel="departmentName" itemValue="id"/>
         <br/>
-        <input type="submit" value="submit"/>
+        <input type="submit" value="提交"/>
     </form:form>
+
+    <!--
+        测试自定义类型转换器
+        输入格式字符串提交，转为Employee对象
+        lastName-email-gender-departmentId
+    -->
+    <form action="${pageContext.request.contextPath}/testConversionService" method="post">
+        <label>
+            员工:<input type="text" name="employee"/>
+        </label>
+        <br/>
+        <input type="submit" value="提交"/>
+    </form>
 </body>
 </html>

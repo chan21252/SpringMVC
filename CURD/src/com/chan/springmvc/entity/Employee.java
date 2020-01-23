@@ -1,13 +1,10 @@
 package com.chan.springmvc.entity;
 
-import org.springframework.stereotype.Component;
-
 /**
  * 员工实体类
  *
  * @author Administrator
  */
-@Component
 public class Employee {
     private Integer id;
     private String lastName;
