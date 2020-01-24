@@ -1,5 +1,6 @@
 package com.chan.springmvc.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -28,6 +29,7 @@ public class Employee {
     private String gender;
     private Department department;
 
+    @JSONField(format = "yyyy-MM-dd")
     @Past(message = "生日是过去时间")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date birthday;
