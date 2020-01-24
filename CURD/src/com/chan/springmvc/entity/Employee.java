@@ -7,6 +7,7 @@ import org.springframework.format.annotation.NumberFormat;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 /**
@@ -22,14 +23,16 @@ public class Employee {
 
     @Email
     private String email;
+
+    @Pattern(regexp = "[男女]", message = "性别只能为男或女")
     private String gender;
     private Department department;
 
-    @Past(message = "生日不能是未来时间")
+    @Past(message = "生日是过去时间")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date birthday;
 
-    @Min(value = 0, message = "工资不能少于0")
+    @Min(value = 0, message = "工资必须大于0")
     @NumberFormat(style = NumberFormat.Style.DEFAULT)
     private Double salary;
 

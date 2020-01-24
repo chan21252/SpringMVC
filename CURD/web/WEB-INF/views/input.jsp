@@ -13,21 +13,26 @@
     <form:form action="${pageContext.request.contextPath}/emp" method="post" modelAttribute="employee">
         <c:if test="${employee.id == null}">
             LastName:<form:input path="lastName"/>
+            <form:errors path="lastName"/>
         </c:if>
         <c:if test="${employee.id != null}">
             <form:hidden path="id"/>
             <input type="hidden" name="_method" value="put">
         </c:if>
         <br/>
-        Email:<form:input path="email"/>
+        Email:<form:input path="email"/><form:errors path="email"/>
         <br/>
         Gender:<form:radiobuttons path="gender" items="${genders}"/>
+        <form:errors path="gender"/>
         <br/>
         Department:<form:select path="department.id" items="${departments}" itemLabel="departmentName" itemValue="id"/>
+        <form:errors path="department.id"/>
         <br/>
         birthday:<form:input path="birthday"/>
+        <form:errors path="birthday"/>
         <br/>
         salary:<form:input path="salary"/>
+        <form:errors path="salary"/>
         <br/>
         <input type="submit" value="提交"/>
     </form:form>

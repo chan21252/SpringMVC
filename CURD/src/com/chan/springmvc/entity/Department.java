@@ -1,11 +1,15 @@
 package com.chan.springmvc.entity;
 
+import javax.validation.constraints.Pattern;
+
 /**
  * 部门实体类
  *
  * @author Administrator
  */
 public class Department {
+
+    @Pattern(regexp = "^10[1-5]$", message = "部门ID只能为10（1-5）")
     private Integer id;
     private String departmentName;
 

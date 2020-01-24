@@ -19,4 +19,8 @@
             </set>
         </property>
     </bean>
+
+    <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
+        <property name="basename" value="com.chan.springmvc.resource.i18n"/>
+    </bean>
 </beans>

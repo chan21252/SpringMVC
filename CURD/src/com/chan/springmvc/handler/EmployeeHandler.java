@@ -18,6 +18,7 @@ import java.util.Map;
  *
  * @author Administrator
  */
+@SessionAttributes(value = {"departments"})
 @Controller(value = "employeeHandler")
 public class EmployeeHandler {
     @Resource(name = "employeeDao")
@@ -62,7 +63,7 @@ public class EmployeeHandler {
     }
 
     @RequestMapping(value = "/emp/{id}", method = RequestMethod.DELETE)
-    public String delete(@PathVariable(value = "id")Integer id) {
+    public String delete(@PathVariable(value = "id") Integer id) {
         employeeDao.delete(id);
         return "redirect:/emps";
     }

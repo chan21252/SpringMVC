@@ -18,9 +18,6 @@ import java.util.Map;
 public class EmployeeDao {
     private static Map<Integer, Employee> employees;
 
-    @Resource(name = "departmentDao")
-    private DepartmentDao departmentDao;
-
     static {
         employees = new HashMap<Integer, Employee>();
         employees.put(1001, new Employee(1001, "E-AA", "aa@spring.com", "男", new Department(101, "D-AA")));
@@ -29,6 +26,9 @@ public class EmployeeDao {
         employees.put(1004, new Employee(1004, "E-DD", "dd@spring.com", "男", new Department(104, "D-DD")));
         employees.put(1005, new Employee(1005, "E-EE", "ee@spring.com", "女", new Department(105, "D-EE")));
     }
+
+    @Resource(name = "departmentDao")
+    private DepartmentDao departmentDao;
 
     /**
      * 获取所有员工信息
