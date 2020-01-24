@@ -21,28 +21,32 @@
 <c:if test="${!empty employees}">
     <table border="1" cellspacing="0" cellpadding="10">
         <thead>
-            <tr>
-                <td>ID</td>
-                <td>LastName</td>
-                <td>Email</td>
-                <td>Gender</td>
-                <td>Department</td>
-                <td>Edit</td>
-                <td>Delete</td>
-            </tr>
+        <tr>
+            <td>ID</td>
+            <td>LastName</td>
+            <td>Email</td>
+            <td>Gender</td>
+            <td>Department</td>
+            <td>Birthday</td>
+            <td>Salary</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
         </thead>
         <tbody>
-            <c:forEach items="${employees}" var="emp">
-                <tr>
-                    <td>${emp.id}</td>
-                    <td>${emp.lastName}</td>
-                    <td>${emp.email}</td>
-                    <td>${emp.gender}</td>
-                    <td>${emp.department.departmentName}</td>
-                    <td><a href="/emp/${emp.id}">edit</a></td>
-                    <td><a href="/emp/${emp.id}" class="delete">delete</a></td>
-                </tr>
-            </c:forEach>
+        <c:forEach items="${employees}" var="emp">
+            <tr>
+                <td>${emp.id}</td>
+                <td>${emp.lastName}</td>
+                <td>${emp.email}</td>
+                <td>${emp.gender}</td>
+                <td>${emp.department.departmentName}</td>
+                <td>${emp.birthday}</td>
+                <td>${emp.salary}</td>
+                <td><a href="/emp/${emp.id}">edit</a></td>
+                <td><a href="/emp/${emp.id}" class="delete">delete</a></td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </c:if>

@@ -45,3 +45,16 @@ restful风格。
     1. 实现ConversionService接口，作为IOC容器的组件。
     2. 通过 ConversionServiceFactoryBean的converters属性注册自定义的类型转换器。
     3. 通过\<mvc:annotation-driven conversion-service="自定义类型转换器组件"/>使用服务。
+11. \<mvc:annotation-driven/>：
+    1. 自动注册：RequestMappingHandlerMapping、RequestMappingHandlerAdapter、ExceptionHandlerExceptionResolver三个bean
+    2. 支持ConversionService对表单参数进行类型转换
+    3. 支持使用 @NumberFormat annotation、@DateTimeFormat –
+       注解完成数据类型的格式化
+12. @initBinder：对webDataBinder初始化。
+13. 参数校验：
+    1. 引入BeanValidation.jar（依赖jboss-logging），hibernate-validator.jar
+    2. 实体类的参数上添加校验注解，比如@NotNull，@Past，@Email...
+    3. 方法参数之前使用@Valid，SpringMVC会在请求参数绑定到方法对象后，进行校验
+    4. 检验结果保存在方法BinderResult类型的参数
+    5. annotation-driven会默认装配好一个LocalValidatorFactoryBean
+    6. 需校验的Bean对象和其绑定结果对象或错误对象时成对出现的，它们之间不允许声明其他的入参

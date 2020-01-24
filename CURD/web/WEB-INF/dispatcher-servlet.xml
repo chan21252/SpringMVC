@@ -10,9 +10,9 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <mvc:default-servlet-handler/>
-    <mvc:annotation-driven conversion-service="myConversionService"/>
+    <mvc:annotation-driven conversion-service="conversionService"/>
 
-    <bean class="org.springframework.context.support.ConversionServiceFactoryBean" id="myConversionService">
+    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService">
         <property name="converters">
             <set>
                 <ref bean="employeeConvert"/>

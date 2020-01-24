@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>添加员工</title>
+    <title>员工信息</title>
 </head>
 <body>
     <%
@@ -24,6 +24,10 @@
         Gender:<form:radiobuttons path="gender" items="${genders}"/>
         <br/>
         Department:<form:select path="department.id" items="${departments}" itemLabel="departmentName" itemValue="id"/>
+        <br/>
+        birthday:<form:input path="birthday"/>
+        <br/>
+        salary:<form:input path="salary"/>
         <br/>
         <input type="submit" value="提交"/>
     </form:form>
