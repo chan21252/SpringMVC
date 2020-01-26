@@ -66,9 +66,21 @@
     <!-- 本地化解析器 -->
     <bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver" id="localeResolver"/>
 
+    <!-- 拦截器 -->
     <mvc:interceptors>
         <!-- 本地化拦截器 -->
-        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" id="localeChangeInterceptor"/>
+        <!-- 自定义拦截器1 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <bean class="com.chan.springmvc.interceptor.MyInterceptor1" id="myInterceptor1"/>
+        </mvc:interceptor>
+
+        <!-- 自定义拦截器2-->
+        <mvc:interceptor>
+            <mvc:mapping path="/emps"/>
+            <bean class="com.chan.springmvc.interceptor.MyInterceptor2" id="myInterceptor2"/>
+        </mvc:interceptor>
     </mvc:interceptors>
 
     <!-- 直接返回页面 -->

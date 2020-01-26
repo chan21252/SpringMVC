@@ -75,3 +75,13 @@ restful风格。
     1. 文件上传由MultipartSolver组件支持
     2. SpringMVC的CommonsMultiPartResolver实现了上传组件，依赖commons fileupload
     3. handler方法入参传入MultiPartFile对象，实现上传
+17. 拦截器：
+    1. 实现HandlerInterceptor接口
+    2. SpringMVC配置拦截器：\<mvc:interceptor>
+    3. 拦截器方法调用时机：
+        1. 执行handler方法前
+        2. 渲染视图前
+        3. 完成处理后
+    4. 多个拦截器调用顺序：
+        1. pre1-》pre2-》..-》preN-》handler-》postN-》...-》post2-》post1-》after2-》after1
+        2. preHandler返回true的拦截器一定要执行afterCompetition方法
