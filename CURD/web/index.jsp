@@ -25,7 +25,42 @@
 <body>
 <a href="/emps">显示所有员工信息</a>
 <br/>
-<button id="btn-json">测试json</button>
+
+<p>json数据测试</p>
+<button id="btn-json">显示所有员工名字</button>
 <div id="employees"></div>
+
+<p>@requestBody注解测试</p>
+<div>
+    <form action="${pageContext.request.contextPath}/testHttpMessageConverter" enctype="multipart/form-data"
+          method="post">
+        文件：<input type="file" name="file"/><br/>
+        <label>
+            描述：
+            <input type="text" name="desc"/>
+        </label>
+        <br/>
+        <input type="submit" value="提交">
+    </form>
+</div>
+
+<p>ResponseEntity测试</p>
+<div><a href="${pageContext.request.contextPath}/testResponseEntity">下载图片</a></div>
+
+<p>国际化</p>
+<div><a href="/i18n">i18n</a></div>
+
+<p>测试文件上传</p>
+<div>
+    <form action="${pageContext.request.contextPath}/testFileUpload" enctype="multipart/form-data" method="post">
+        文件：<input type="file" name="file"/><br/>
+        <label>
+            描述：
+            <input type="text" name="desc"/>
+        </label>
+        <br/>
+        <input type="submit" value="提交">
+    </form>
+</div>
 </body>
 </html>

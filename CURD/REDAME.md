@@ -58,3 +58,20 @@ restful风格。
     4. 检验结果保存在方法BinderResult类型的参数
     5. annotation-driven会默认装配好一个LocalValidatorFactoryBean
     6. 需校验的Bean对象和其绑定结果对象或错误对象时成对出现的，它们之间不允许声明其他的入参
+14. json处理：
+    1. 引入阿里巴巴fastjson.jar包
+    2. annotation-driven配置message-converters，装配com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter
+    3. handler处理方法添加@RequestBody注解
+15. 国际化：
+    1. LocaleChangeInterceptor：
+        1. 获取name=local的请求参数
+        2. 解析local参数值为Local对象
+        3. 获取LocalResolver对象
+    2. SessionLocalResolver
+        1. 将Local对象放入Session中
+        2. 从Session中获取Local对象
+    3. 应用程序使用Local对象
+16. 文件上传：
+    1. 文件上传由MultipartSolver组件支持
+    2. SpringMVC的CommonsMultiPartResolver实现了上传组件，依赖commons fileupload
+    3. handler方法入参传入MultiPartFile对象，实现上传

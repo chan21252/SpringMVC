@@ -5,13 +5,22 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="com.chan.springmvc"/>
 
+    <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!-- 不处理静态资源，直接返回 -->
     <mvc:default-servlet-handler/>
+
     <mvc:annotation-driven conversion-service="conversionService">
-        <mvc:message-converters register-defaults="false">
+        <!-- http消息转换器 -->
+        <mvc:message-converters register-defaults="true">
+            <bean id="formHttpMessageConverter" class="org.springframework.http.converter.FormHttpMessageConverter"/>
+            <!-- 二进制文件转换器 -->
+            <bean id="byteArrayHttpMessageConverter"
+                  class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
             <!-- 阿里巴巴 FastJson HttpMessageConverter -->
             <bean id="fastJsonHttpMessageConverter"
                   class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
@@ -40,6 +49,7 @@
         <property name="charset" value="UTF-8"/>
     </bean>
 
+    <!-- 自定义类型转换器 -->
     <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService">
         <property name="converters">
             <set>
@@ -48,7 +58,25 @@
         </property>
     </bean>
 
+    <!-- 国际化资源文件 -->
     <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
         <property name="basename" value="com.chan.springmvc.resource.i18n"/>
+    </bean>
+
+    <!-- 本地化解析器 -->
+    <bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver" id="localeResolver"/>
+
+    <mvc:interceptors>
+        <!-- 本地化拦截器 -->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
+
+    <!-- 直接返回页面 -->
+    <mvc:view-controller path="i18n" view-name="i18n"/>
+
+    <!-- multipart解析器，处理文件上传 -->
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="5242280"/>
     </bean>
 </beans>

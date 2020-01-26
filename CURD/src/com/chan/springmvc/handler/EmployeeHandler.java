@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -98,11 +97,5 @@ public class EmployeeHandler {
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
         //webDataBinder.setDisallowedFields("lastName");
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/testJson", method = RequestMethod.GET)
-    public Collection<Employee> getAllEmployee() {
-        return employeeDao.getEmployees();
     }
 }
