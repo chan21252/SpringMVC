@@ -62,5 +62,10 @@
         <input type="submit" value="提交">
     </form>
 </div>
+
+<p>测试异常处理</p>
+<div><a href="${pageContext.request.contextPath}/testExceptionHandler?i=10">测试ExceptionHandler</a></div>
+<div><a href="${pageContext.request.contextPath}/testResponseStatusException?i=10">测试ResponseStatusExceptionSolver</a>
+</div>
 </body>
 </html>

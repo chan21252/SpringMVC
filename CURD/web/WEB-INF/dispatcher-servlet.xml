@@ -91,4 +91,14 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="maxUploadSize" value="5242280"/>
     </bean>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"
+          id="simpleMappingExceptionResolver">
+        <property name="exceptionAttribute" value="exception"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.ArrayIndexOutOfBoundsException">error</prop>
+            </props>
+        </property>
+    </bean>
 </beans>

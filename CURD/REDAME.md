@@ -85,3 +85,35 @@ restful风格。
     4. 多个拦截器调用顺序：
         1. pre1-》pre2-》..-》preN-》handler-》postN-》...-》post2-》post1-》after2-》after1
         2. preHandler返回true的拦截器一定要执行afterCompetition方法
+18. 异常处理
+    1. ExceptionHandler
+        1. @ExceptionHandler注解异常处理方法，标注可以处理的异常类型
+        2. handler方法抛出异常会跳转到对应异常类型的处理方法
+        3. 异常处理方法，接受Exception对象，返回ModelAndView
+        4. @ControllerAdvice注解类，表示该类是异常处理类
+    2. ResponseStatusException
+        1. 自定义异常类加上@ResponseStatus注解，发生该类异常时，返回对应状态码
+    3. SimpleMappingExceptionResolver
+        1. 映射异常和错误返回页面
+19. SpringMVC运行流程
+    1. 发出请求
+    2. DispatcherServlet的url-pattern匹配url
+    2. SpringMVC中是否存在对应的映射？
+        1. 有
+            1. HandlerMapping获取HandlerExceptionChain对象
+            2. 获取HandlerAdapter对象
+            3. 调用拦截器的preHandler
+            4. 执行Handler的目标方法，返回ModelAndView对象
+            5. 调用拦截器的postHandler对象
+                1. 是否存在异常
+                    1. 有，调用HandlerExceptionResolver处理异常，返回新的ModelAndView对象
+                    2. 没有，
+                        1. 视图解析器得到实际的View
+                        2. 渲染视图
+                        3. 调用拦截器的afterCompletion方法
+        2. 没有
+            1. 是否配置了 default-servlet-handler
+                1. 有，查找对应的静态资源
+                    1. 有，返回资源
+                    2. 没有，返回404
+                2. 没有，返回 404

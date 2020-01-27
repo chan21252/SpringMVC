@@ -2,6 +2,7 @@ package com.chan.springmvc.test;
 
 import com.chan.springmvc.dao.EmployeeDao;
 import com.chan.springmvc.entity.Employee;
+import com.chan.springmvc.exception.UserException;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -116,6 +117,23 @@ public class TestSpringMVC {
         }
         file.transferTo(filePath);
 
+        return "success";
+    }
+
+    @RequestMapping(value = "/testExceptionHandler")
+    public String testExceptionHandler(@RequestParam(name = "i") int i) {
+        System.out.println("结果：" + (100 / i));
+        return "success";
+    }
+
+    @RequestMapping("/testResponseStatusException")
+    public String testResponseStatusException(@RequestParam(name = "i") int i) {
+        if (i == 13) {
+            throw new UserException("用户名密码不匹配");
+        }
+
+        String[] messages = new String[i];
+        System.out.println(messages[8]);
         return "success";
     }
 }
